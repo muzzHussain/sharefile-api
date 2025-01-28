@@ -90,6 +90,7 @@ router.get("/download/:id", async (req, res) => {
   if (!file || file.isDeleted) return res.status(404).send("File not found.");
 
   res.set("Content-Disposition", `attachment; filename=${file.fileName}`);
+  res.contentType(file.fileType);
   res.send(file.fileData);
 });
 
